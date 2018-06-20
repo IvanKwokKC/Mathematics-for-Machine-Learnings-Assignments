@@ -1,0 +1,7 @@
+from scipy import stats
+
+
+# Use the stats.linregress() method to evaluate regression
+
+
+regression = stats.linregress(xdat, ydat) 

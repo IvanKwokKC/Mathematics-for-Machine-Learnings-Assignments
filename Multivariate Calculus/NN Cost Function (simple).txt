@@ -1,0 +1,18 @@
+# First we set the state of the network
+£m = np.tanh
+w1 = 1.3
+b1 = -0.1
+
+# Then we define the neuron activation.
+def a1(a0) :
+  
+	z = w1 * a0 + b1
+  
+	return £m(z)
+
+# Experiment with different values of x below.
+x = 0
+y = a1(x)
+actual_y = 1
+
+C = (actual_y-y)**2

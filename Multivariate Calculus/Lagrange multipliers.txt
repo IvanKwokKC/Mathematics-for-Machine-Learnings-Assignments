@@ -1,0 +1,64 @@
+from scipy import optimize
+
+# First we define the functions,
+
+def f (x, y) :
+    
+	return np.exp(-(2*x*x + y*y - x*y) / 2)
+
+
+
+def g (x, y) :
+    
+	return x*x + 3*(y+1)**2 - 1
+
+
+
+# Next their derivatives,
+
+def dfdx (x, y) :
+    
+	return 1/2 * (-4*x + y) * f(x, y)
+
+
+
+def dfdy (x, y) :
+    
+	return 1/2 * (x - 2*y) * f(x, y)
+
+
+
+def dgdx (x, y) :
+    
+	return 2*x
+
+
+
+def dgdy (x, y) :
+    
+	return 6 * y + 6
+
+def DL (xy£f) :
+    
+	[x, y, £f] = xy£f
+    
+	return np.array([
+            
+		dfdx(x, y) - £f * dgdx(x, y),
+
+	        dfdy(x, y) - £f * dgdy(x, y),
+
+		- g(x, y)
+
+		])
+
+(x0, y0, £f0) = (1, 1, 0)
+x, y, £f = optimize.root(DL, [x0, y0, £f0]).x
+
+print("x = %g" % x)
+
+print("y = %g" % y)
+
+print("£f = %g" % £f)
+
+print("f(x, y) = %g" % f(x, y))
